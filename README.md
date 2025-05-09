@@ -46,5 +46,9 @@ Additionally, you can enable the following tools/SDKs by simply uncommenting the
 
 Simply uncomment whatever you need and build the devcontainer to get started!
 
-## Customizing clangd
+### Customizing clangd
 You can suppress any clangd warnings you want to ignore by adding them to the `Diagnostics: Suppress:` section of the `.clangd` file. Additional information on this configuration file can be found [here](https://clangd.llvm.org/config.html).
+
+## Debugging
+You can also debug your game from within this container. Simply launch your game in melonDS, turn on the GDB stub, and then press "Run and Debug" on the "(gdb) Launch" configuration to get started! The debugger will attach to melonDS and you can
+set breakpoints, view variables & registers, and even inspect memory all from the comfort of VS Code.
