@@ -5,6 +5,13 @@ FROM skylyrac/blocksds:slim-latest
 # Install clangd-21 from Jonko's ARM64 docker container build
 COPY --link --from=clangd /clangd /clangd
 
+# Install the official ARM toolchain (for gdb)
+RUN ARM_TOOLCHAIN_VERSION=$(curl -s https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads | grep -Po '<h4>Version \K.+(?=</h4>)') && \
+    curl -Lo gcc-arm-none-eabi.tar.xz "https://developer.arm.com/-/media/Files/downloads/gnu/${ARM_TOOLCHAIN_VERSION}/binrel/arm-gnu-toolchain-${ARM_TOOLCHAIN_VERSION}-aarch64-arm-none-eabi.tar.xz" && \
+    mkdir /opt/gcc-arm-none-eabi && \
+    tar xf gcc-arm-none-eabi.tar.xz --strip-components=1 -C /opt/gcc-arm-none-eabi && \
+    rm gcc-arm-none-eabi.tar.xz
+
 RUN apt update && \
     apt install python3-full python3-pip ninja-build wget cmake libfreetype-dev g++ gcc unzip -y
 
@@ -43,13 +50,6 @@ RUN git clone https://github.com/AntonioND/architectds.git && \
 #     mv fontbm /bmfont/fontbm && \
 #     cd .. && \
 #     rm -rf fontbm
-
-# Install the official ARM toolchain (for gdb)
-RUN ARM_TOOLCHAIN_VERSION=$(curl -s https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads | grep -Po '<h4>Version \K.+(?=</h4>)') && \
-    curl -Lo gcc-arm-none-eabi.tar.xz "https://developer.arm.com/-/media/Files/downloads/gnu/${ARM_TOOLCHAIN_VERSION}/binrel/arm-gnu-toolchain-${ARM_TOOLCHAIN_VERSION}-aarch64-arm-none-eabi.tar.xz" && \
-    mkdir /opt/gcc-arm-none-eabi && \
-    tar xf gcc-arm-none-eabi.tar.xz --strip-components=1 -C /opt/gcc-arm-none-eabi && \
-    rm gcc-arm-none-eabi.tar.xz
 
 # Clone Maxmod and libnds sources for debugging
 RUN git clone https://github.com/blocksds/maxmod && \
