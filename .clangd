@@ -5,7 +5,6 @@ If:
 
 CompileFlags:
   BuiltinHeaders: QueryDriver
-  Compiler: /opt/wonderful/toolchain/gcc-arm-none-eabi/bin/arm-none-eabi-g++
   Add:
     - "-isystem/opt/wonderful/toolchain/gcc-arm-none-eabi/include"
     - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include"
