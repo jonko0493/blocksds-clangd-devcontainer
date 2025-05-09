@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/arm9/arm9.elf",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/",
+            "serverLaunchTimeout": 1000,
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/opt/gcc-arm-none-eabi/bin/arm-none-eabi-gdb",
+            "sourceFileMap":{
+                "/home/runner/work/packages/packages/blocksds-toolchain/src/blocksds-toolchain/libs/maxmod": "/work/maxmod",
+                "/home/runner/work/packages/packages/blocksds-toolchain/src/blocksds-toolchain/libs/libnds": "/work/libnds"
+            },
+            "miDebuggerServerAddress": "host.docker.internal:3333",
+            "setupCommands": [
+                {
+                    "description": "Set architecture",
+                    "text": "set arch armv5te",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

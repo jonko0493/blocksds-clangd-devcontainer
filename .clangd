@@ -1,0 +1,51 @@
+#.clangd
+
+If:
+  PathMatch: .*\.(c|h)(pp)?
+
+CompileFlags:
+  BuiltinHeaders: QueryDriver
+  Compiler: /opt/wonderful/toolchain/gcc-arm-none-eabi/bin/arm-none-eabi-g++
+  Add:
+    - "-isystem/opt/wonderful/toolchain/gcc-arm-none-eabi/include"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/machine"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/mmc"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/arm7"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/arm9"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/arm9/peripherals"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/arm9/teak"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/sys"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/external/nflib/include"
+
+Diagnostics:
+  Suppress:
+    - switch
+
+---
+
+If:
+  PathMatch: .*arm9/.*\.(c|h)(pp)?
+
+CompileFlags:
+  Add:
+    - "-DARM9"
+    - "-mcpu=arm946e-s+nofp"
+---
+
+If:
+  PathMatch: .*arm7/.*\.(c|h)(pp)?
+
+CompileFlags:
+  Add:
+    - "-DARM7"
+    - "-mcpu=arm7tdmi"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/dswifi/"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/dswifi/lib"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/dswifi/include"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/dswifi/include/arpa"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/dswifi/include/netinet"
+    - "-isystem/opt/wonderful/thirdparty/blocksds/core/libs/dswifi/include/sys"

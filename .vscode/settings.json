@@ -1,0 +1,16 @@
+{
+    "clangd.onConfigChanged": "restart",
+    "clangd.path": "/clangd/bin/clangd",
+    "clangd.arguments": [
+      "--query-driver=/opt/wonderful/toolchain/gcc-arm-none-eabi/bin/arm-none-eabi-g*",
+      "--log=verbose"
+    ],
+    "clangd.enableCodeCompletion": true,
+    "clangd.enableHover": true,
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "C_Cpp.autocomplete": "disabled",
+    "C_Cpp.codeFolding": "disabled",
+    "C_Cpp.configurationWarnings": "disabled",
+    "C_Cpp.default.enableConfigurationSquiggles": true,
+    "C_Cpp.inlayHints.parameterNames.hideLeadingUnderscores": true
+}
